@@ -1,0 +1,36 @@
+.notes-wrapper {
+  margin: auto;
+  padding-top: 2rem;
+  width: 50%;
+}
+
+h1 {
+  color: #d6d9de;
+  margin-top: 0;
+}
+
+.add {
+  align-items: center;
+  border: 2px solid #489fff;
+  color: #489fff;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  height: 3rem;
+  justify-content: center;
+  margin: 2rem 0 0 0;
+  opacity: 0.7;
+  width: 100%;
+}
+
+.add:hover {
+  background-color: #489fff;
+  color: white;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .notes-wrapper {
+    width: 80%;
+  }
+}
