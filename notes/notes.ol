@@ -54,7 +54,7 @@ main {
     response.message = "Failed to delete note.";
 
     /* Query for user */ 
-    verifyTokenRequest.token = request.username;
+    verifyTokenRequest.token = request.token;
     verifyToken@Accounts(verifyTokenRequest)(verifyTokenResponse);
     username = verifyTokenResponse.username;
     success = verifyTokenResponse.success;

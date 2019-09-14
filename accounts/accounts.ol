@@ -8,6 +8,7 @@ include "JWTokensInterface.iol"
 
 constants {
   ServiceLocation = "socket://localhost:8001/",
+  DatabaseLocation = "localhost",
   Secret = "([-s}ILVnl)^#XK9obzCI~t)ciYrSnhrdb-ac,-2d~t/I]8xUyja0$9T%mIf"
 }
 
@@ -33,7 +34,7 @@ init {
   with(connectionInfo) {
     .username = "root";
     .password = "pass";
-    .host = "localhost";
+    .host = DatabaseLocation; 
     .database = "accounts";
     .driver = "mysql"
   }
