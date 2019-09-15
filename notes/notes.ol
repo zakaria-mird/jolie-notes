@@ -7,6 +7,7 @@ include "AccountsInterface.iol"
 
 constants {
   AccountsLocation = "socket://localhost:8001/",
+  DatabaseLocation = "localhost",
   ServiceLocation = "socket://localhost:8002/"
 }
 
@@ -31,7 +32,7 @@ init {
   with(connectionInfo) {
     .username = "root";
     .password = "pass";
-    .host = "localhost";
+    .host = DatabaseLocation;
     .database = "notes";
     .driver = "mysql"
   }
@@ -50,6 +51,17 @@ init {
 
 main {
   [delete(request)(response) {
+    /* Connection to database */
+    with(connectionInfo) {
+      .username = "root";
+      .password = "pass";
+      .host = DatabaseLocation; 
+      .database = "notes";
+      .driver = "mysql"
+    }
+    connect@Database(connectionInfo)();
+
+    /* Variable initialization */
     response.success = false;
     response.message = "Failed to delete note.";
 
@@ -74,9 +86,21 @@ main {
       response.success = false;
       response.message = "Failed to delete note"
     }
+    close@Database()()
   }]
 
   [list(request)(response) {
+    /* Connection to database */
+    with(connectionInfo) {
+      .username = "root";
+      .password = "pass";
+      .host = DatabaseLocation; 
+      .database = "notes";
+      .driver = "mysql"
+    }
+    connect@Database(connectionInfo)();
+
+    /* Variable initialization */
     response.success = false;
 
     /* Query for user */ 
@@ -104,9 +128,21 @@ main {
       response.success = false;
       response.message = "Failed to retrieve notes"
     }
+    close@Database()()
   }]
 
   [add(request)(response) {
+    /* Connection to database */
+    with(connectionInfo) {
+      .username = "root";
+      .password = "pass";
+      .host = DatabaseLocation; 
+      .database = "notes";
+      .driver = "mysql"
+    }
+    connect@Database(connectionInfo)();
+
+    /* Variable initialization */
     response.success = false;
     response.message = "Failed to create note.";
 
@@ -133,6 +169,7 @@ main {
       response.success = false;
       response.message = "Failed to create note"
     }
+    close@Database()()
   }]
 }
 

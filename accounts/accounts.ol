@@ -65,11 +65,23 @@ init {
     update@Database(updateRequest)(ret);
     println@Console("Inserted user into database.")()
   }
+  
+  close@Database()()
 }
 
 main {
 
   [login( request )( response ) {
+    /* Connection to database */
+    with(connectionInfo) {
+      .username = "root";
+      .password = "pass";
+      .host = DatabaseLocation; 
+      .database = "accounts";
+      .driver = "mysql"
+    }
+    connect@Database(connectionInfo)();
+
     /* Variable initialization */
     username = request.username;
     password = request.password;
@@ -106,9 +118,20 @@ main {
       response.success = false;
       response.auth_token = ""
     }
+    close@Database()()
   }]
 
   [verifyToken(request)(response) {
+    /* Connection to database */
+    with(connectionInfo) {
+      .username = "root";
+      .password = "pass";
+      .host = DatabaseLocation; 
+      .database = "accounts";
+      .driver = "mysql"
+    }
+    connect@Database(connectionInfo)();
+
     /* Variable initialization */
     token = request.token;
 
@@ -130,6 +153,7 @@ main {
       response.username = username;
       println@Console("Verified token from user " + username)()
     }
+    close@Database()()
   }]
 
 }
