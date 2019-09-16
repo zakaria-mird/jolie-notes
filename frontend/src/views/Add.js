@@ -16,7 +16,9 @@ function Add(props) {
     if (state.title !== "" && state.content !== "") {
       addNote(context.state.token, state.title, state.content, context.dispatch);
     }
-    props.history.push("/notes");
+    setTimeout(() => {
+      props.history.push("/notes");
+    }, 250);
   }
 
   return (

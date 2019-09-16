@@ -20,17 +20,18 @@ export default function Notes(props) {
 
   const addNode = event => {
     event.preventDefault();
-    console.log("Add clicked");
     props.history.push("/add");
   }
 
   const handleDeleteNote = (id) => {
     deleteNote(context.state.token, id, context.dispatch);
-    let notes = getNotes(context.state.token, context.dispatch);
-    setState({
-      ...state,
-      notes: notes,
-    });
+    setTimeout(() => {
+      getNotes(context.state.token, context.dispatch);
+      setState({
+        ...state,
+        notes: context.state.notes,
+      });
+    }, 250);
   }
 
   return (
