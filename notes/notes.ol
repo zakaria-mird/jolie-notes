@@ -47,6 +47,8 @@ init {
     update@Database(updateRequest)(ret);
     println@Console("Created table notes.")()
   }
+
+  close@Database()()
 }
 
 main {

@@ -1,6 +1,8 @@
 FROM jolielang/jolie
-ADD . /home/ 
-RUN cd /home/ && javac -classpath "lib/*:lib/build/*" java/accounts/JWTokens.java
-RUN cd /home/ && cd java && jar cfv ../lib/jwtokens.jar accounts/JWTokens.class && cd ..
-# CMD jolie accounts.ol
+ADD . /opt/ 
+WORKDIR /opt/
+RUN javac -classpath "lib/*:lib/build/*" java/accounts/JWTokens.java
+RUN cd java && jar cfv ../lib/jwtokens.jar accounts/JWTokens.class && cd ..
+CMD jolie -C "DatabaseLocation=\"mariadb\"" accounts.ol
+# CMD ["/bin/sh"]
 EXPOSE 8001
