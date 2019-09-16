@@ -2,6 +2,7 @@ html,
 body,
 #root {
   color: #d1d5d7;
+  font-family: 'Zilla Slab', serif;
   height: 100%;
   margin: 0;
   width: 100%;
